@@ -1,14 +1,14 @@
-Snowflake [] snowFlakes = new Snowflake[50];
+Snowflake [] snowFlakes ;
 void setup()
 
 {
   //your code here
   size(400,400);
   frameRate(30);
-  
+  snowFlakes = new Snowflake[100]; 
   for (int i = 0;i<snowFlakes.length;i++)
   {
-    snowFlakes[i] = new Snowflake();
+    snowFlakes[i] = new Snowflake((int)(Math.random()*400),0);
   }
 
 }
@@ -16,9 +16,9 @@ void draw()
 {
   //your code here
   background(0);
-  for (int i = 0; i < snowFlakes.length; i++)
+  for (int xi = 0; xi < snowFlakes.length; xi++)
   {
-      snowFLakes[i].show();
+      snowFLakes[xi].show();
   }
 
 }
@@ -32,11 +32,11 @@ class Snowflake
   //class member variable declarations
   int snowX;int snowY;
   boolean isMoving;
-  Snowflake()
+  Snowflake(int x , int y)
   {
     //class member variable initializations
-    snowX = (int)(Math.random()*400);
-    snowY = (int)(Math.random()*400);
+    snowX = x;
+    snowY = y;
     isMoving = true;
   }
   void show()
