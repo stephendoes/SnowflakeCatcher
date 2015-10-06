@@ -1,42 +1,54 @@
-Snowflake [] snowFlakes ;
+Snowflake [] blizzard ;
 void setup()
 
 {
   //your code here
+  background(0);
   size(400,400);
   frameRate(30);
-  snowFlakes = new Snowflake[100]; 
-  for (int i = 0;i<snowFlakes.length;i++)
+  blizzard = new Snowflake[100]; 
+  for (int i = 0;i<blizzard.length;i++)
   {
-    snowFlakes[i] = new Snowflake((int)(Math.random()*400),0);
+    blizzard[i] = new Snowflake();
+
   }
 
 }
 void draw()
 {
   //your code here
-  background(0);
-  for (int xi = 0; xi < snowFlakes.length; xi++)
+  
+  for (int xi = 0; xi < blizzard.length; xi++)
   {
-      snowFLakes[xi].show();
+      blizzard[xi].lookDown();
+      blizzard[xi].move();
+      blizzard[xi].wrap();
+      blizzard[xi].show();
+      
+      
+      
+       
   }
 
 }
+
 void mouseDragged()
 {
   //your code here
-}
+  fill((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
+    ellipse(mouseX,mouseY,10,10);
+  }
 
 class Snowflake
 {
   //class member variable declarations
   int snowX;int snowY;
   boolean isMoving;
-  Snowflake(int x , int y)
+  Snowflake()
   {
     //class member variable initializations
-    snowX = x;
-    snowY = y;
+    snowX = (int)(Math.random()*400);
+    snowY = (int)(Math.random()*400);
     isMoving = true;
   }
   void show()
@@ -48,13 +60,10 @@ class Snowflake
   void lookDown()
   {
     //your code here
-    if (snowY > 410)
+   
+    if (get(snowX,snowY+5)==color(0))
     {
-      isMoving = false;
-    }
-    else if (snowY + 2 == color(0))
-    {
-      isMoving = false;
+      isMoving = true;
     }
     else isMoving = true;
   }
@@ -71,6 +80,7 @@ class Snowflake
     {
       snowY++;
     }
+    else snowY+=0;
   }
   void wrap()
   {
