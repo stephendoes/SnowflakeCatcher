@@ -14,20 +14,20 @@ void setup()
   }
 
 }
+
 void draw()
 {
   //your code here
   
-  for (int xi = 0; xi < blizzard.length; xi++)
+  for (int i = 0; i < blizzard.length; i++)
   {
-      blizzard[xi].lookDown();
-      blizzard[xi].move();
-      blizzard[xi].wrap();
-      blizzard[xi].show();
+      blizzard[i].erase();
+      blizzard[i].lookDown();
+      blizzard[i].move();
+      blizzard[i].wrap();
+      blizzard[i].show();
       
-      
-      
-       
+           
   }
 
 }
@@ -35,8 +35,9 @@ void draw()
 void mouseDragged()
 {
   //your code here
+  noStroke();
   fill((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
-    ellipse(mouseX,mouseY,10,10);
+  ellipse(mouseX,mouseY,10,10);
   }
 
 class Snowflake
@@ -49,46 +50,51 @@ class Snowflake
     //class member variable initializations
     snowX = (int)(Math.random()*400);
     snowY = (int)(Math.random()*400);
-    isMoving = true;
+    isMoving = false;
   }
   void show()
   {
     //your code here
     fill(255);
+    noStroke();
     ellipse(snowX,snowY,5,5);
   }
   void lookDown()
   {
     //your code here
-   
-    if (get(snowX,snowY+5)==color(0))
+
+    if (get(snowX,snowY+7)!=color(0))
     {
-      isMoving = true;
+      isMoving = false;
     }
     else isMoving = true;
   }
   void erase()
   {
     //your code here
-    fill(0);
-    ellipse(snowX,snowY,7,7);
+    if(isMoving)
+    {
+     fill(0);
+     noStroke();
+     ellipse(snowX,snowY,9,9);
+    }
   }
   void move()
   {
     //your code here
-    if (isMoving = true)
+    if (isMoving)
     {
       snowY++;
-    }
-    else snowY+=0;
+      }
   }
   void wrap()
   {
     //your code here
-    if (snowY > 420)
+    if (snowY > 390)
     {
       snowY = 0;
       snowX = (int)(Math.random()*400);
+      isMoving= true;
     }
   }
 }
