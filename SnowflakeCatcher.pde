@@ -5,7 +5,7 @@ void setup()
   //your code here
   background(0);
   size(400,400);
-  frameRate(30);
+  frameRate(60);
   blizzard = new Snowflake[100]; 
   for (int i = 0;i<blizzard.length;i++)
   {
